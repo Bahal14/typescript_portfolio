@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 180 100% 95%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 180 100% 95%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 180 100% 90%;
+
+    --muted: 222 30% 20%;
+    --muted-foreground: 180 20% 60%;
+
+    --accent: 180 100% 40%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 50% 20%;
+    --input: 222 47% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors */
+    --glow-cyan: 180 100% 50%;
+    --glow-teal: 174 100% 42%;
+    --navy-dark: 222 47% 6%;
+    --navy-medium: 222 47% 12%;
+    --navy-light: 222 47% 18%;
+
+    /* Gradients */
+    --gradient-glow: linear-gradient(135deg, hsl(180 100% 50%), hsl(174 100% 42%));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 12%), hsl(222 47% 8%));
+    --gradient-text: linear-gradient(90deg, hsl(180 100% 60%), hsl(174 100% 50%), hsl(180 100% 60%));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .glow-text {
+    @apply text-primary;
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.8),
+                 0 0 20px hsl(var(--primary) / 0.6),
+                 0 0 30px hsl(var(--primary) / 0.4);
+  }
+
+  .glow-box {
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3),
+                0 0 30px hsl(var(--primary) / 0.2),
+                inset 0 0 15px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-border {
+    @apply border border-primary/50;
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.3),
+                inset 0 0 10px hsl(var(--primary) / 0.1);
+  }
+
+  .card-glass {
+    @apply bg-card/80 backdrop-blur-md border border-primary/20 rounded-xl;
+    background: linear-gradient(145deg, hsl(222 47% 12% / 0.9), hsl(222 47% 8% / 0.9));
+  }
+
+  .grid-bg {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(hsl(var(--primary) / 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .skill-badge {
+    @apply px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300;
+    @apply bg-secondary/50 border-primary/30 text-primary;
+  }
+
+  .skill-badge:hover {
+    @apply bg-primary/20 border-primary glow-box;
+  }
+
+  .nav-link {
+    @apply relative text-muted-foreground hover:text-primary transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold glow-text tracking-wider;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground;
+    @apply hover:shadow-lg hover:shadow-primary/30 hover:scale-105;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    @apply border-2 border-primary text-primary bg-transparent;
+    @apply hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .tech-card {
+    @apply p-6 rounded-xl transition-all duration-300 cursor-pointer;
+    @apply bg-secondary/30 border border-primary/20;
+  }
+
+  .tech-card:hover {
+    @apply bg-secondary/50 border-primary/50 glow-box;
+    transform: translateY(-5px);
+  }
+
+  .project-card {
+    @apply relative overflow-hidden rounded-xl transition-all duration-500;
+    @apply bg-card border border-primary/20;
+  }
+
+  .project-card:hover {
+    @apply border-primary/60 glow-box;
+    transform: translateY(-8px);
+  }
+
+  .certificate-card {
+    @apply relative overflow-hidden rounded-xl p-4 transition-all duration-300;
+    @apply bg-secondary/30 border border-primary/20;
+  }
+
+  .certificate-card:hover {
+    @apply border-primary/50 glow-box;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg transition-all duration-300;
+    @apply bg-secondary/50 border border-primary/30 text-foreground;
+    @apply focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30;
+    @apply placeholder:text-muted-foreground;
+  }
+
+  .social-icon {
+    @apply w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300;
+    @apply border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground;
+    @apply hover:glow-box hover:scale-110;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, hsl(180 100% 60%), hsl(174 100% 50%), hsl(180 100% 60%));
+    background-size: 200% auto;
+    animation: gradient 3s linear infinite;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
